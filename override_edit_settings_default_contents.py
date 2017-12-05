@@ -14,12 +14,19 @@ class OverrideEditSettingsDefaultContentsListener(sublime_plugin.EventListener):
         # print( "command_name: %s, args: %s" % ( command_name, args ) )
 
         if command_name == "edit_settings":
+            place_holders = ['default']
+
             new_default_text = ""
+            new_default_text_len = len( new_default_text )
 
-            # Avoid an infinity loop, by rewriting this command again
-            if len( args['default'] ) != len( new_default_text ):
+            for place_holder in place_holders:
 
-                args['default'] = new_default_text
-                return ("edit_settings", args)
+                # Avoid an infinity loop, by rewriting this command again
+                if place_holder in args \
+                        and len( args[place_holder] ) != new_default_text_len:
 
+                    args[place_holder] = new_default_text
+
+                    # print( "Returning args: " + str( args ) )
+                    return ("edit_settings", args)
 
