@@ -1,7 +1,7 @@
 
 # Override Edit Settings Default Contents
 
-Usually the packages add the text same text when opening their setting for the first time:
+Usually the packages add the same text when opening their setting for the first time:
 ```javascript
 [
 
