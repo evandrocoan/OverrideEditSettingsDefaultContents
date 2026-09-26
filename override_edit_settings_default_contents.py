@@ -23,6 +23,7 @@ class OverrideEditSettingsDefaultContentsListener(sublime_plugin.EventListener):
 
                 # Avoid an infinity loop, by rewriting this command again
                 if place_holder in args \
+                        and isinstance( args[place_holder], str ) \
                         and len( args[place_holder] ) != new_default_text_len:
 
                     args[place_holder] = new_default_text
